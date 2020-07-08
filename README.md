@@ -1,10 +1,12 @@
 # topologyzoo_to_mininet
-Run your Topologyzoo topology on the Mininet using single command
+Run your [Topologyzoo topology](http://www.topology-zoo.org/dataset.html) on the [Mininet](http://mininet.org/) using single command
 ![TopologyZoo Abilene](http://www.topology-zoo.org/maps/Abilene.jpg) 
 
 ## How to use
 - First you need to clone from the repository:
-`git clone https://github.com/hqasemi/topologyzoo_to_mininet.git`
+````
+git clone https://github.com/hqasemi/topologyzoo_to_mininet.git
+```
 - Then cd into directory and make sure that the file is executable
 ```
 cd topologyzoo_to_mininet.git 
@@ -79,4 +81,5 @@ available nodes are:
 c0 h1 h10 h11 h2 h3 h4 h5 h6 h7 h8 h9 s1 s10 s11 s2 s3 s4 s5 s6 s7 s8 s9
 mininet> 
 ```
+The following image demonstrates gui of Floodlight controller after running [Abilene topology](http://www.topology-zoo.org/dataset.html)
 ![Abilene on Mininet](abilene.png)
