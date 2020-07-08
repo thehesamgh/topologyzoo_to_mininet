@@ -1,0 +1,82 @@
+# topologyzoo_to_mininet
+Run your Topologyzoo topology on the Mininet using single command
+![TopologyZoo Abilene](http://www.topology-zoo.org/maps/Abilene.jpg) 
+
+## How to use
+- First you need to clone from the repository:
+`git clone https://github.com/hqasemi/topologyzoo_to_mininet.git`
+- Then cd into directory and make sure that the file is executable
+```
+cd topologyzoo_to_mininet.git 
+chmod +x topologyzoo_to_mininet.py
+```
+or you can simple run using python3 command:
+```
+python3 topologyzoo_to_mininet.py
+```
+- you can use the following argument:
+```arguments:
+  -h, --help            show this help message and exit
+  --availtopo           prints list of all available topologies and exit.
+  --toponame TOPO_NAME  Topology name e.g. Abilene
+  --cport CONTROLLER_PORT
+                        Controller port in mininet, default value is 6653.
+  --cip CONTROLLER_IP   Controller ip in mininet, default value is 127.0.0.1.
+  --controller CONTROLLER_TYPE
+                        Default controller is mininet controller, other
+                        options: remote,ovscontroller
+```
+
+
+## Sample 1
+```
+# python3 topologyzoo_to_mininet.py --availtopo
+Aarnet
+Abilene
+Abvt
+Aconet
+Agis
+Ai3
+Airtel
+Amres
+Ans
+Arn
+Arnes
+Arpanet196912
+Arpanet19706
+Arpanet19719
+Arpanet19723
+Arpanet19728
+AsnetAm
+Atmnet
+AttMpls
+Azrena
+Bandcon
+Basnet
+Bbnplanet
+Bellcanada
+Bellsouth
+Belnet2003
+...
+```
+
+## Sample 2
+```
+# ./topologyzoo_to_mininet.py --toponame Abilene --controller remote --cip 127.0.0.1 --cport 6653
+*** Adding controller
+*** Add switches
+*** Add hosts
+*** Add links
+*** Starting network
+*** Configuring hosts
+h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 
+*** Starting controllers
+*** Starting switches
+*** Post configure switches and hosts
+*** Starting CLI:
+mininet> nodes
+available nodes are: 
+c0 h1 h10 h11 h2 h3 h4 h5 h6 h7 h8 h9 s1 s10 s11 s2 s3 s4 s5 s6 s7 s8 s9
+mininet> 
+```
+![Abilene on Mininet](abilene.png)
