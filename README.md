@@ -9,7 +9,7 @@ git clone https://github.com/hqasemi/topologyzoo_to_mininet.git
 ```
 - Then cd into directory and make sure that the file is executable
 ```
-cd topologyzoo_to_mininet.git 
+cd topologyzoo_to_mininet
 chmod +x topologyzoo_to_mininet.py
 ```
 or you can simple run using python3 command:
