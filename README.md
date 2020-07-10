@@ -2,6 +2,10 @@
 *Fastest way to run your [Topologyzoo topology](http://www.topology-zoo.org/dataset.html) on the [Mininet](http://mininet.org/)!*
 ![TopologyZoo Abilene](http://www.topology-zoo.org/maps/Abilene.jpg) 
 
+## Prerequisites
+- requests
+- mininet
+
 ## How to use
 - First you need to clone from the repository:
 ```
@@ -11,13 +15,18 @@ $ git clone https://github.com/hqasemi/topologyzoo_to_mininet.git
 ```
 $ cd topologyzoo_to_mininet
 $ chmod +x topologyzoo_to_mininet.py
-$ ./topologyzoo_to_mininet.py
+$ ./topologyzoo_to_mininet.py <insert_arguments_here>
 ```
 or you can simply run using python3 command:
 ```
-$ python3 topologyzoo_to_mininet.py
+$ python3 topologyzoo_to_mininet.py <insert_arguments_here>
 ```
-- you can use the following argument:
+**If it didn't work for you, it's required to run with python2!**
+```
+$ python2 topologyzoo_to_mininet.py <insert_arguments_here>
+```
+
+- You can use the following arguments:
 ```
 arguments:
   -h, --help            show this help message and exit
@@ -33,6 +42,7 @@ arguments:
 
 
 ## Sample 1
+You can see how many useful topologies you can have on mininet. Please consider using *--availtopo* switch to see all TopologyZoo topologies (http://www.topology-zoo.org/dataset.html):
 ```
 # python3 topologyzoo_to_mininet.py --availtopo
 Aarnet
@@ -65,6 +75,7 @@ Belnet2003
 ```
 
 ## Sample 2
+If you found the toponame by running sample1, then you can use the following command to connect that topology to a *remote* controller:
 ```
 # ./topologyzoo_to_mininet.py --toponame Abilene --controller remote --cip 127.0.0.1 --cport 6653
 *** Adding controller
@@ -85,6 +96,10 @@ mininet>
 ```
 The following image demonstrates Floodlight controller's GUI after running [Abilene topology](http://www.topology-zoo.org/dataset.html)
 ![Abilene on Mininet](abilene.png)
+
+## Todo
+- multicontroller support
+- choosing openflow version
 
 ## Any question, bug report or features request?
 Don't hesistate to contact me: s.hesam.ghasemi@gmail.com
