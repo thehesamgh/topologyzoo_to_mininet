@@ -8,7 +8,7 @@ def download_file(filename, url):
     """
     Download an URL to a file
     """
-    with open(filename, 'wb') as fout:
+    with open(str(filename), 'wb') as fout:
         response = requests.get(url, stream=True)
         response.raise_for_status()
         # Write response data to file
@@ -23,7 +23,7 @@ def download_if_not_exists(url,filename):
     True if the file was downloaded,
     False if it already existed
     """
-    if not os.path.exists(filename):
+    if not os.path.exists(str(filename)):
         download_file(filename, url)
         return True
     return False
@@ -224,10 +224,13 @@ class Mininet:
             hosts= []
             
             first_ip = '10.0.0.0'
-            for (first,second,node_type) in self.topology_graph:
+            for (first,second,node_type) in sorted(self.topology_graph):
                 if node_type == "h":
                     #hosts.append(net.addHost('h'+str(i), cls=Host, defaultRoute=None))
-                    hosts.append(net.addHost('h'+str(first[1]+1), cls=Host, ip=str(ipaddress.IPv4Address(int(ipaddress.IPv4Address(first_ip))+first[1]+1)), defaultRoute=None))
+                    if sys.version_info >= (3, 0):
+                        hosts.append(net.addHost('h'+str(first[1]+1), cls=Host, ip=str(ipaddress.IPv4Address(int(ipaddress.IPv4Address(first_ip))+first[1]+1)), defaultRoute=None))
+                    else:
+                        hosts.append(net.addHost('h'+str(first[1]+1), cls=Host, defaultRoute=None))
                     
 
             info( '*** Add links\n')
@@ -276,15 +279,15 @@ if __name__=="__main__":
     args = parser.parse_args()
 
 
-    import tempfile,pathlib
-    tmp_dir = pathlib.Path(tempfile.gettempdir())
+    import tempfile
+    tmp_dir = tempfile.gettempdir()
 
-    archive_path = pathlib.Path(tmp_dir)/"archive.zip"
+    archive_path = os.path.join(tmp_dir,"archive.zip")
     download_if_not_exists("http://www.topology-zoo.org/files/archive.zip",archive_path)
-    extract (archive_path,tmp_dir/pathlib.Path("topologyzoo"))
+    extract (archive_path,os.path.join(tmp_dir,"topologyzoo"))
 
     if args.avail_topo:
-        print_all_topos(tmp_dir/pathlib.Path("topologyzoo"))
+        print_all_topos(os.path.join(tmp_dir,"topologyzoo"))
         exit(0)
     import sys
     if args.avail_topo == False and args.topo_name==None:
@@ -292,5 +295,5 @@ if __name__=="__main__":
         exit(1)
         
 
-    tzoo2= TopologyZooXML(tmp_dir/pathlib.Path("topologyzoo")/pathlib.Path(args.topo_name+".graphml"))
+    tzoo2= TopologyZooXML(os.path.join(tmp_dir,"topologyzoo",args.topo_name+".graphml"))
     m= Mininet(tzoo2.get_topology(),args.controller_ip,args.controller_port,args.controller_type)   
