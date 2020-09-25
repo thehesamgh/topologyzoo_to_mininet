@@ -139,14 +139,14 @@ def convert_id_to_dpid (id):
     param id: input switch id e.g. 1
     return : output dpid e.g. 00:00:00:00:00:00:00:01
     """
-    return __convert_to_colon_separated (format(id,'00000000000016x'))
+    return convert_to_colon_separated (format(id,'00000000000016x'))
 
 def convert_id_to_mac (id):
     """
     param id: input switch id e.g. 1
     return : output dpid e.g. 00:00:00:00:00:00:00:01
     """
-    return __convert_to_colon_separated (format(id,'00000000000012x'))
+    return convert_to_colon_separated (format(id,'00000000000012x'))
 
 
 class Mininet:
