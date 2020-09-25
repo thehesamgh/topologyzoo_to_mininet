@@ -125,7 +125,7 @@ class TopologyZooXML:
             final_topo[((host_mac,sw[1]),sw,'h')] = 1
         return final_topo
 
-def __convert_to_colon_separated (a):
+def convert_to_colon_separated (a):
     #a = "0000000000000001"
     for j in range(0, int(len(a) / 2)):
         if j == 0:
