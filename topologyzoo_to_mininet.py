@@ -290,8 +290,8 @@ if __name__=="__main__":
         print_all_topos(os.path.join(tmp_dir,"topologyzoo"))
         exit(0)
     import sys
-    if args.avail_topo == False and args.topo_name==None:
-        print ("you must specify at list one of switches, use \"{} -h\" for help.".format(sys.argv[0]))
+    if  args.topo_name==None:
+        print ("you must specify at least one of the switches, use \"{} -h\" for help.".format(sys.argv[0]))
         exit(1)
         
 
