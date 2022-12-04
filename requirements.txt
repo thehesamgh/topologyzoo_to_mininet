@@ -1,2 +1,2 @@
-requests
-pathlib
+requests~=2.28.1
+pathlib~=1.0.1
