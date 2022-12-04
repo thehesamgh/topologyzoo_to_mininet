@@ -1,7 +1,10 @@
 #!/usr/bin/python3
-import os.path
+import os
+import sys
+import tempfile
 import xml.etree.ElementTree as ET
-from zipfile import ZipFile
+from pathlib import Path
+from zipfile import ZipFile, BadZipFile
 
 import requests
 
@@ -31,6 +34,14 @@ def download_if_not_exists(url, filename):
         download_file(filename, url)
         return True
     return False
+
+
+def delete_file(file_path):
+    """
+    Deletes a file from system
+    Returns None
+    """
+    Path(file_path).unlink()
 
 
 def extract(zip_file_path, destination_path):
@@ -292,18 +303,18 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    import tempfile
-
     tmp_dir = tempfile.gettempdir()
 
     archive_path = os.path.join(tmp_dir, "archive.zip")
     download_if_not_exists("http://www.topology-zoo.org/files/archive.zip", archive_path)
-    extract(archive_path, os.path.join(tmp_dir, "topologyzoo"))
+    try:
+        extract(archive_path, os.path.join(tmp_dir, "topologyzoo"))
+    except BadZipFile:
+        delete_file(archive_path)
 
     if args.avail_topo:
         print_all_topos(os.path.join(tmp_dir, "topologyzoo"))
         exit(0)
-    import sys
 
     if args.topo_name == None:
         print("you must specify at least one of the switches, use \"{} -h\" for help.".format(sys.argv[0]))
