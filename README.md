@@ -11,6 +11,15 @@
 ```
 $ git clone https://github.com/hqasemi/topologyzoo_to_mininet.git
 ```
+- Create you development virtual environment and activate it:
+```
+$ python -m venv venv
+$ sh venv/bin/acivate
+```
+- Then, install the requirements:
+```
+$ pip install -r requirements.txt
+```
 - Then cd into directory and make sure that the file is executable, then you can run it:
 ```
 $ cd topologyzoo_to_mininet
